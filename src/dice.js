@@ -1,10 +1,8 @@
-// Dice rolling simulation
-
 /**
  * Class representing a dice roller.
  *
  * @file dice.js
- * @description
+ * @description Simulates rolling various types of dice.
  * @author Tove Ek
  * @version 1.0.0
  */
