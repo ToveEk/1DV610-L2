@@ -5,6 +5,7 @@
   "description": "L2. En Modul",
   "main": "index.js",
   "scripts": {
+    "start": "node ./src/index.js",
     "test": "npm test",
     "lint": "npx eslint ./src || exit 0",
     "lint:fix": "npx eslint ./src --fix || exit 0"
