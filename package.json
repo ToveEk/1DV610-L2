@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "type": "module",
   "description": "L2. En Modul",
-  "main": "index.js",
+  "main": "testApp.js",
   "scripts": {
-    "start": "node ./src/index.js",
+    "start": "node ./src/testApp.js",
     "test": "npm test",
     "lint": "npx eslint ./src || exit 0",
     "lint:fix": "npx eslint ./src --fix || exit 0"
