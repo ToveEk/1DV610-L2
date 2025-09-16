@@ -1,2 +1,2 @@
 // Rules for dice rolling
-// Example: "advantage", "disadvantage"
+// Example: "advantage", "disadvantage", "keep highest", "keep lowest"
