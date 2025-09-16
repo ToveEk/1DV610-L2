@@ -19,11 +19,10 @@ export class Dice {
     try {
       if (this.diceArray.includes(sides)) {
         const roll = Math.floor(Math.random() * sides) + 1
-        const result = `You rolled a ${roll}`
+        const result = `You rolled a ${roll} with a d${sides}`
         return result
       } else {
         const errorMessage = 'Type of dice not valid. Please choose one of the following:\nd4, d6, d8, d10, d12, d20 or d100'
-        console.error(errorMessage)
         return errorMessage
       }
     } catch (error) {
@@ -42,4 +41,6 @@ export class Dice {
     // TODO: call rollDie in a loop the amount of numDice times
     // example: rollDice(3, 6) -> rolls 3 six-sided dice
   }
+
+  // TODO: add method for applying modifiers
 }
