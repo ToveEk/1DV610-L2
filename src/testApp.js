@@ -13,12 +13,14 @@ import { Dice } from './dice.js'
 
 const diceRoller = new Dice()
 
-console.log(diceRoller.rollDie(4)) // Roll a single four-sided die
-console.log(diceRoller.rollDie(6)) // Roll a single six-sided die
-console.log(diceRoller.rollDie(8)) // Roll a single eight-sided die
-console.log(diceRoller.rollDie(10)) // Roll a single ten-sided die
-console.log(diceRoller.rollDie(12)) // Roll a single twelve-sided die
-console.log(diceRoller.rollDie(20)) // Roll a single twenty-sided die
-console.log(diceRoller.rollDie(100)) // Roll a single one-hundred-sided die
+console.log(diceRoller.rollDie('d4')) // Roll a single four-sided die
+console.log(diceRoller.rollDie('d6')) // Roll a single six-sided die
+console.log(diceRoller.rollDie('d8')) // Roll a single eight-sided die
+console.log(diceRoller.rollDie('d10')) // Roll a single ten-sided die
+console.log(diceRoller.rollDie('d12')) // Roll a single twelve-sided die
+console.log(diceRoller.rollDie('d20')) // Roll a single twenty-sided die
+console.log(diceRoller.rollDie('d100')) // Roll a single one-hundred-sided die
 
-console.log(diceRoller.rollDie(5)) // Invalid die type
+console.log(diceRoller.rollDie('d5')) // Invalid die type
+console.log(diceRoller.rollDie('6')) // Invalid notation
+console.log(diceRoller.rollDie()) // Invalid notation
