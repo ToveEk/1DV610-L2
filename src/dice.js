@@ -6,6 +6,12 @@
  * @author Tove Ek
  * @version 1.0.0
  */
+
+import { Parser } from './parser.js'
+
+/**
+ *
+ */
 export class Dice {
   diceArray = [4, 6, 8, 10, 12, 20, 100]
 
@@ -17,9 +23,13 @@ export class Dice {
    */
   rollDie (sides) {
     try {
-      if (this.diceArray.includes(sides)) {
-        const roll = Math.floor(Math.random() * sides) + 1
-        const result = `You rolled a ${roll} with a d${sides}`
+      const parser = new Parser()
+
+      const parsedDice = parser.parseDice(sides)
+
+      if (this.diceArray.includes(parsedDice)) {
+        const roll = Math.floor(Math.random() * parsedDice) + 1
+        const result = `You rolled a ${roll} with a d${parsedDice}`
         return result
       } else {
         const errorMessage = 'Type of dice not valid. Please choose one of the following:\nd4, d6, d8, d10, d12, d20 or d100'
@@ -43,4 +53,14 @@ export class Dice {
   }
 
   // TODO: add method for applying modifiers
+
+  // En metod för att enbart anropa parseDice?
+
+  // En metod för att avgöra om en eller flera tärningar ska rullas? Därefter anropa lämplig metod?
+
+  // En metod för att avgöra om regler ska tillämpas?
+
+  // En metod för att avgöra om modifieringar ska tillämpas?
+
+  // Dice rolls behöver lagras någonstans... hm
 }
