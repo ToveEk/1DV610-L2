@@ -1,11 +1,7 @@
-import { Modifier } from './modifier.js'
-
 /**
  * Class representing a dice parser.
  */
 export class Parser {
-  modifier = new Modifier()
-
   /**
    * Parses the dice notation to extract number of dice, sides, and any modifiers.
    *
@@ -38,7 +34,6 @@ export class Parser {
     if (diceNotation.includes('d')) {
       const sides = parseInt(diceNotation.split('d')[1])
 
-      console.log('Number of sides:', sides)
       return sides
     } else {
       throw new Error('Invalid dice notation')
@@ -65,16 +60,18 @@ export class Parser {
    * Parses the dice notation to see if it includes a modifier and extracts it if present.
    *
    * @param {string} diceNotation - The dice notation string to parse.
+   * @returns {number} - The modifier value.
    */
   parseModifier (diceNotation) {
     if (diceNotation.includes('+')) {
       const modifierValue = parseInt(diceNotation.split('+')[1])
 
-      this.modifier.addToRoll(modifierValue)
+      return modifierValue
     } else if (diceNotation.includes('-')) {
       const modifierValue = parseInt(diceNotation.split('-')[1])
 
-      this.modifier.removeFromRoll(modifierValue)
+      return modifierValue
     }
+    return 0
   }
 }
