@@ -10,6 +10,7 @@ export class Parser {
    * Parses the dice notation to extract number of dice, sides, and any modifiers.
    *
    * @param {string} diceNotation - The dice notation string to parse (e.g., "2d6+3").
+   * @returns {object} - An object containing the number of sides, number of dice, and modifier.
    */
   parseDice (diceNotation) {
     const sides = this.removeDNotation(diceNotation)
@@ -17,6 +18,14 @@ export class Parser {
     const modifier = this.parseModifier(diceNotation)
 
     console.log(`Rolling ${numberOfDice} d${sides} with modifier: ${modifier || 0}`)
+
+    const diceObject = {
+      sides,
+      numberOfDice,
+      modifier: modifier || 0
+    }
+
+    return diceObject
   }
 
   /**
