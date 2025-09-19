@@ -1,16 +1,34 @@
+import { Modifier } from './modifier.js'
+
 /**
  * Class representing a dice parser.
  */
 export class Parser {
+  modifier = new Modifier()
+
   /**
-   * Parses a dice notation string and returns the number of sides.
+   * Parses the dice notation to extract number of dice, sides, and any modifiers.
+   *
+   * @param {string} diceNotation - The dice notation string to parse (e.g., "2d6+3").
+   */
+  parseDice (diceNotation) {
+    const sides = this.removeDNotation(diceNotation)
+    const numberOfDice = this.checkNumberOfDice(diceNotation)
+    const modifier = this.parseModifier(diceNotation)
+
+    console.log(`Rolling ${numberOfDice} d${sides} with modifier: ${modifier || 0}`)
+  }
+
+  /**
+   * Parses the dice notation and removes the 'd' and returns the number of sides.
    *
    * @param {string} diceNotation - The dice notation string to parse.
    * @returns {number} - The number of sides on the die.
    */
-  parseDice (diceNotation) {
+  removeDNotation (diceNotation) {
     if (diceNotation.includes('d')) {
-      const sides = parseInt(diceNotation.replace('d', ''))
+      const sides = parseInt(diceNotation.split('d')[1])
+
       console.log('Number of sides:', sides)
       return sides
     } else {
@@ -18,6 +36,36 @@ export class Parser {
     }
   }
 
-  // Om det står en siffra innan d också, t.ex. 2d6, hur ska det hanteras?
-  // Hur ska siffran efter + eller - hanteras?
+  /**
+   * Parses the dice notation to find out the number of dice to roll.
+   *
+   * @param {string} diceNotation - The dice notation string to parse.
+   * @returns {number} - The number of dice to roll.
+   */
+  checkNumberOfDice (diceNotation) {
+    const numberofDice = parseInt(diceNotation.split('d')[0])
+
+    if (!isNaN(numberofDice)) {
+      return numberofDice
+    } else {
+      return 1
+    }
+  }
+
+  /**
+   * Parses the dice notation to see if it includes a modifier and extracts it if present.
+   *
+   * @param {string} diceNotation - The dice notation string to parse.
+   */
+  parseModifier (diceNotation) {
+    if (diceNotation.includes('+')) {
+      const modifierValue = parseInt(diceNotation.split('+')[1])
+
+      this.modifier.addToRoll(modifierValue)
+    } else if (diceNotation.includes('-')) {
+      const modifierValue = parseInt(diceNotation.split('-')[1])
+
+      this.modifier.removeFromRoll(modifierValue)
+    }
+  }
 }
