@@ -13,10 +13,9 @@ import { Dice } from './dice.js'
 
 const diceRoller = new Dice()
 
-// console.log(diceRoller.rollDie('d4')) // Roll a single four-sided die
-
-console.log(diceRoller.rollDie('2d6')) // Roll two six-sided dice
-console.log(diceRoller.rollDie('3d8')) // Roll three eight-sided dice
+console.log(diceRoller.roll('d4+5')) // Roll a single four-sided die with plus 5 modifier
+console.log(diceRoller.roll('2d6+1')) // Roll two six-sided dice with plus 1 modifier
+console.log(diceRoller.roll('3d8-2')) // Roll three eight-sided dice with minus 2 modifier
 
 // console.log(diceRoller.rollDie('d10')) // Roll a single ten-sided die
 // console.log(diceRoller.rollDie('d12')) // Roll a single twelve-sided die
