@@ -1,35 +1,36 @@
-// Rules for dice rolling
-// Example: "advantage", "disadvantage", "keep highest", "keep lowest"
+import { Parser } from './parser.js'
 
 /**
  * Class representing different rules for dice rolling.
  */
 export class Rules {
+  parser = new Parser()
+
   /**
    * Rolls dice with an advantage.
    */
   rollWithAdvantage () {
-
+    // användaren rullar flera dice t.ex 4d20 och behåller den högsta
   }
 
   /**
    * Rolls dice with a disadvantage.
    */
   rollWithDisadvantage () {
-
+    // användaren rullar flera dice t.ex 4d20 och behåller den lägsta
   }
 
   /**
-   * Keeps the highest roll out of multiple dice rolls.
+   * Handles the case of rolling a natural twenty.
    */
-  keepHighestRoll () {
-
+  naturalTwenty () {
+    // om användaren rullar en natural twenty blir resultatet alltid 20 (automatiskt lyckat)
   }
 
   /**
-   * Keeps the lowest roll out of multiple dice rolls.
+   * Handles the case of rolling a natural one.
    */
-  keepLowestRoll () {
-
+  naturalOne () {
+    // om användaren rullar en natural one blir resultatet alltid 1 (automatiskt misslyckat)
   }
 }
