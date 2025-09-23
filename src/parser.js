@@ -12,6 +12,11 @@ export class Parser {
     const sides = this.removeDNotation(diceNotation)
     const numberOfDice = this.checkNumberOfDice(diceNotation)
     const modifier = this.parseModifier(diceNotation)
+    const advantageOrDisadvantage = this.checkIfAdvantageOrDisadvantage(diceNotation)
+
+    if (advantageOrDisadvantage === true) {
+      console.log('Rolling with advantage or disadvantage')
+    }
 
     console.log(`Rolling ${numberOfDice} d${sides} with modifier: ${modifier || 0}`)
 
@@ -73,5 +78,19 @@ export class Parser {
       return modifierValue
     }
     return 0
+  }
+
+  /**
+   * Checks if the dice notation includes advantage or disadvantage keywords.
+   *
+   * @param {string} diceNotation - The dice notation string to check.
+   * @returns {boolean} - True if advantage or disadvantage is included, false otherwise.
+   */
+  checkIfAdvantageOrDisadvantage (diceNotation) {
+    if (diceNotation.includes('adv') || diceNotation.includes('dis')) {
+      return true
+    } else {
+      return false
+    }
   }
 }
