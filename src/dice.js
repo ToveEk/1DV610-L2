@@ -24,7 +24,7 @@ export class Dice {
    * @param {string} diceNotation - The dice notation string (e.g., "2d6").
    * @returns {string} - The result message or error message.
    */
-  startRolling (diceNotation) {
+  startRolling(diceNotation) {
     try {
       const parsedDice = this.parseDice(diceNotation)
 
@@ -32,10 +32,21 @@ export class Dice {
         this.singleOrMultiple(parsedDice)
       }
 
-      // this.applyRules(diceNotation, this.roll)
+      if (diceNotation.includes('+') || diceNotation.includes('-')) {
+        console.log('Roll before modifier: ', this.roll)
+        this.addModifier(this.roll, parsedDice)
+      }
 
-      return this.showResult(this.roll, parsedDice)
+      if (diceNotation.includes('adv') || diceNotation.includes('dis')) {
+        this.applyRules(diceNotation, this.roll)
+      } else {
+        console.log('No special rules applied')
+      }
+
+      const result = this.showResult(this.roll, parsedDice)
+      return result
     } catch (error) {
+      console.error(error)
       return 'An error occurred while rolling the dice.'
     }
   }
@@ -46,7 +57,7 @@ export class Dice {
    * @param {string} diceNotation - The dice notation string (e.g., "2d6+1").
    * @returns {object} - The parsed dice information.
    */
-  parseDice (diceNotation) {
+  parseDice(diceNotation) {
     const parsedDice = this.parser.parseDice(diceNotation)
     console.log('The parsed dice:', parsedDice)
     return parsedDice
@@ -57,7 +68,7 @@ export class Dice {
    *
    * @param {object} parsedDice - The parsed dice information.
    */
-  singleOrMultiple (parsedDice) {
+  singleOrMultiple(parsedDice) {
     if (parsedDice.numberOfDice > 1) {
       this.rollMultipleDice(parsedDice)
     } else {
@@ -70,12 +81,10 @@ export class Dice {
    *
    * @param {object} parsedDice - The parsed dice information.
    */
-  rollSingleDie (parsedDice) {
+  rollSingleDie(parsedDice) {
     this.roll = Math.floor(Math.random() * parsedDice.sides) + 1
 
     console.log('Single die roll:', this.roll)
-
-    this.addModifier(this.roll, parsedDice)
   }
 
   /**
@@ -83,14 +92,12 @@ export class Dice {
    *
    * @param {object} parsedDice - The parsed dice information.
    */
-  rollMultipleDice (parsedDice) {
+  rollMultipleDice(parsedDice) {
     for (let i = 0; i < parsedDice.numberOfDice; i++) {
       this.roll += Math.floor(Math.random() * parsedDice.sides) + 1
     }
 
     console.log('Multiple dice roll total:', this.roll)
-
-    this.addModifier(this.roll, parsedDice)
   }
 
   /**
@@ -100,7 +107,7 @@ export class Dice {
    * @param {object} parsedDice - The parsed dice information.
    * @returns {number} - The roll value after adding the modifier.
    */
-  addModifier (roll, parsedDice) {
+  addModifier(roll, parsedDice) {
     roll += parsedDice.modifier
 
     console.log('Roll after modifier:', roll)
@@ -113,13 +120,13 @@ export class Dice {
    * @param {string} diceNotation - The original dice notation string.
    * @param {number} roll - The result of the dice roll.
    */
-  applyRules (diceNotation, roll) {
+  applyRules(diceNotation, roll) {
     const rules = new Rules()
 
     if (diceNotation.includes('adv')) {
-      rules.rollWithAdvantage()
+      rules.rollWithAdvantage(diceNotation, roll)
     } else if (diceNotation.includes('dis')) {
-      rules.rollWithDisadvantage()
+      rules.rollWithDisadvantage(diceNotation, roll)
     }
 
     if (this.parsedDice.sides === 20 && roll === 20) {
@@ -136,7 +143,7 @@ export class Dice {
    * @param {object} parsedDice - The parsed dice information.
    * @returns {string} - The result message.
    */
-  showResult (roll, parsedDice) {
+  showResult(roll, parsedDice) {
     const result = `You rolled a ${roll} with ${parsedDice.numberOfDice} d${parsedDice.sides}`
     return result
   }
