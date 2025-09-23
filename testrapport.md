@@ -7,7 +7,7 @@
 | removeDNotation() | Anropas i parseDice(). Console loggar antalet sidor på tärningen (aka siffran efter "d"). | ✅ |
 | checkNumberOfDice() | Anropas i parseDice(). Console loggar antalet tärningar som rullas (aka siffran innan "d"). | ✅ |
 | parseModifier() | Anropas i parseDice(). Console loggar modifiern (aka siffran efter + eller -). | ⚠️ + fungerar men inte - |
-|                 |                 |              |
+| rollWithAdvantage() | Anropas i applyRules() i Dice-klassen. | ❌ Tärningarna rullas två gånger. En gång i Dice och en gång i Rules. |
 |                 |                 |              |
 |                 |                 |              |
 |                 |                 |              |
