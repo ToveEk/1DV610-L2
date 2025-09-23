@@ -8,12 +8,14 @@
  */
 
 import { Parser } from './parser.js'
+import { Rules } from './rules.js'
 
 /**
  *
  */
 export class Dice {
   diceArray = [4, 6, 8, 10, 12, 20, 100]
+  roll = 0
   parser = new Parser()
 
   /**
@@ -22,43 +24,122 @@ export class Dice {
    * @param {string} diceNotation - The dice notation string (e.g., "2d6").
    * @returns {string} - The result message or error message.
    */
-  roll (diceNotation) {
+  startRolling (diceNotation) {
     try {
-      const parsedDice = this.parser.parseDice(diceNotation)
+      const parsedDice = this.parseDice(diceNotation)
 
-      console.log('The parsed dice:', parsedDice)
-
-      let roll = 0
-
-      // inte clean code lol
       if (this.diceArray.includes(parsedDice.sides)) {
-        if (parsedDice.numberOfDice > 1) {
-          for (let i = 0; i < parsedDice.numberOfDice; i++) {
-            roll += Math.floor(Math.random() * parsedDice.sides) + 1
-          }
-        } else {
-          roll = Math.floor(Math.random() * parsedDice.sides) + 1
-        }
-
-        roll += parsedDice.modifier
-        const result = `You rolled a ${roll} with ${parsedDice.numberOfDice} d${parsedDice.sides}`
-        return result
-      } else {
-        return 'Type of dice not valid. Please choose one of the following:\nd4, d6, d8, d10, d12, d20 or d100'
+        this.singleOrMultiple(parsedDice)
       }
+
+      // this.applyRules(diceNotation, this.roll)
+
+      return this.showResult(this.roll, parsedDice)
     } catch (error) {
       return 'An error occurred while rolling the dice.'
     }
   }
 
-  // Hade kunnat göra rollDie och rollDice till en metod...
-  // nu blir det ju mycket kaka på kaka och bryter mot DRY
+  /**
+   * Parses the dice notation string into its components.
+   *
+   * @param {string} diceNotation - The dice notation string (e.g., "2d6+1").
+   * @returns {object} - The parsed dice information.
+   */
+  parseDice (diceNotation) {
+    const parsedDice = this.parser.parseDice(diceNotation)
+    console.log('The parsed dice:', parsedDice)
+    return parsedDice
+  }
 
-  // En metod för att enbart anropa parseDice?
+  /**
+   * Determines whether to roll a single die or multiple dice based on the number of dice.
+   *
+   * @param {object} parsedDice - The parsed dice information.
+   */
+  singleOrMultiple (parsedDice) {
+    if (parsedDice.numberOfDice > 1) {
+      this.rollMultipleDice(parsedDice)
+    } else {
+      this.rollSingleDie(parsedDice)
+    }
+  }
 
-  // En metod för att avgöra om en eller flera tärningar ska rullas? Därefter anropa lämplig metod?
+  /**
+   * Rolls a single die.
+   *
+   * @param {object} parsedDice - The parsed dice information.
+   */
+  rollSingleDie (parsedDice) {
+    this.roll = Math.floor(Math.random() * parsedDice.sides) + 1
 
-  // En metod för att avgöra om regler ska tillämpas?
+    console.log('Single die roll:', this.roll)
+
+    this.addModifier(this.roll, parsedDice)
+  }
+
+  /**
+   * Rolls multiple dice and sums their results.
+   *
+   * @param {object} parsedDice - The parsed dice information.
+   */
+  rollMultipleDice (parsedDice) {
+    for (let i = 0; i < parsedDice.numberOfDice; i++) {
+      this.roll += Math.floor(Math.random() * parsedDice.sides) + 1
+    }
+
+    console.log('Multiple dice roll total:', this.roll)
+
+    this.addModifier(this.roll, parsedDice)
+  }
+
+  /**
+   * Adds a modifier to the roll if applicable.
+   *
+   * @param {number} roll - The current roll value.
+   * @param {object} parsedDice - The parsed dice information.
+   * @returns {number} - The roll value after adding the modifier.
+   */
+  addModifier (roll, parsedDice) {
+    roll += parsedDice.modifier
+
+    console.log('Roll after modifier:', roll)
+    return roll
+  }
+
+  /**
+   * Applies game rules to the dice roll.
+   *
+   * @param {string} diceNotation - The original dice notation string.
+   * @param {number} roll - The result of the dice roll.
+   */
+  applyRules (diceNotation, roll) {
+    const rules = new Rules()
+
+    if (diceNotation.includes('adv')) {
+      rules.rollWithAdvantage()
+    } else if (diceNotation.includes('dis')) {
+      rules.rollWithDisadvantage()
+    }
+
+    if (this.parsedDice.sides === 20 && roll === 20) {
+      rules.naturalTwenty()
+    } else if (this.parsedDice.sides === 20 && roll === 1) {
+      rules.naturalOne()
+    }
+  }
+
+  /**
+   * Displays the result of the dice roll.
+   *
+   * @param {number} roll - The result of the dice roll.
+   * @param {object} parsedDice - The parsed dice information.
+   * @returns {string} - The result message.
+   */
+  showResult (roll, parsedDice) {
+    const result = `You rolled a ${roll} with ${parsedDice.numberOfDice} d${parsedDice.sides}`
+    return result
+  }
 
   // Dice rolls behöver lagras någonstans... hm
 }
