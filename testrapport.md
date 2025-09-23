@@ -6,7 +6,7 @@
 | roll()          | Tog bort rollDie() och rollDice() och slog ihop till en metod för att inte bryta mot DRY. Testas på samma sätt som rollDie() gjorde. | ✅ |
 | removeDNotation() | Anropas i parseDice(). Console loggar antalet sidor på tärningen (aka siffran efter "d"). | ✅ |
 | checkNumberOfDice() | Anropas i parseDice(). Console loggar antalet tärningar som rullas (aka siffran innan "d"). | ✅ |
-| parseModifier() | Anropas i parseDice(). Console loggar modifiern (aka siffran efter + eller -). | ✅ |
+| parseModifier() | Anropas i parseDice(). Console loggar modifiern (aka siffran efter + eller -). | ⚠️ + fungerar men inte - |
 |                 |                 |              |
 |                 |                 |              |
 |                 |                 |              |
