@@ -20,8 +20,7 @@ const diceRoller = new Dice()
 // console.log(diceRoller.rollDie('d10')) // Roll a single ten-sided die
 // console.log(diceRoller.rollDie('d12')) // Roll a single twelve-sided die
 
-// console.log(diceRoller.startRolling('d20')) // Roll a single twenty-sided die
-console.log(diceRoller.startRolling('2d20 with advantage')) // Roll two twenty-sided dice
+console.log(diceRoller.startRolling('2d20 with advantage')) // Roll two twenty-sided dice with advantage
 
 // console.log(diceRoller.rollDie('d100')) // Roll a single one-hundred-sided die
 
