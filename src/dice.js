@@ -28,13 +28,13 @@ export class Dice {
     try {
       const parsedDice = this.parser.parseDice(diceNotation)
 
-      console.log('The parsed dice in startRolling:', parsedDice)
-
       if (this.diceArray.includes(parsedDice.sides) && parsedDice.advantage === false && parsedDice.disadvantage === false) {
         this.singleOrMultiple(parsedDice)
       } else if (this.diceArray.includes(parsedDice.sides) && (parsedDice.advantage === true || parsedDice.disadvantage === true)) {
         const resultOfRollingWithRules = this.applyRules(this.roll, parsedDice)
         return resultOfRollingWithRules
+      } else {
+        return 'Invalid die type. Please use d4, d6, d8, d10, d12, d20, or d100.'
       }
 
       if (diceNotation.includes('+') || diceNotation.includes('-')) {
@@ -45,21 +45,8 @@ export class Dice {
       const result = this.showResult(this.roll, parsedDice)
       return result
     } catch (error) {
-      console.error(error)
       return 'An error occurred while rolling the dice.'
     }
-  }
-
-  /**
-   * Parses the dice notation string into its components.
-   *
-   * @param {string} diceNotation - The dice notation string (e.g., "2d6+1").
-   * @returns {object} - The parsed dice information.
-   */
-  parseDice (diceNotation) {
-    const parsedDice = this.parser.parseDice(diceNotation)
-    console.log('The parsed dice:', parsedDice)
-    return parsedDice
   }
 
   /**
@@ -122,8 +109,6 @@ export class Dice {
    */
   applyRules (roll, parsedDice) {
     const rules = new Rules()
-
-    console.log('The dice object in applyRules:', parsedDice)
 
     if (parsedDice.sides === 20 && roll === 20) {
       rules.naturalTwenty()
