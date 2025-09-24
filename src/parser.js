@@ -74,7 +74,7 @@ export class Parser {
     } else if (diceNotation.includes('-')) {
       const modifierValue = parseInt(diceNotation.split('-')[1])
 
-      return modifierValue
+      return -modifierValue
     }
     return 0
   }
