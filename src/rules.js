@@ -9,14 +9,11 @@ export class Rules {
   /**
    * Rolls dice with an advantage (e.g., 2d20 and keep the highest).
    *
-   * @param {string} diceNotation - The dice notation string (e.g., "2d20").
-   * @param {number} roll - The initial roll value.
+   * @param {object} parsedDice - The parsed dice information.
    * @returns {number} - The highest roll when rolling with advantage.
    */
-  rollWithAdvantage(diceNotation, roll) {
+  rollWithAdvantage (parsedDice) {
     const rolls = []
-
-    const parsedDice = this.parser.parseDice(diceNotation)
 
     for (let i = 0; i < parsedDice.numberOfDice; i++) {
       const singleRoll = Math.floor(Math.random() * parsedDice.sides) + 1
@@ -25,24 +22,20 @@ export class Rules {
 
     const highestRoll = Math.max(...rolls)
     console.log('Rolls with advantage:', rolls)
-    console.log('Highest roll with advantage:', highestRoll)
 
-    roll = highestRoll
+    const resultMessage = `You rolled a ${highestRoll} with advantage! (Rolls: ${rolls.join(', ')})`
 
-    return highestRoll
+    return resultMessage
   }
 
   /**
    * Rolls dice with a disadvantage (e.g., 2d20 and keep the lowest).
    *
-   * @param {string} diceNotation - The dice notation string (e.g., "2d20").
-   * @param {number} roll - The initial roll value.
+   * @param {object} parsedDice - The parsed dice information.
    * @returns {number} - The lowest roll when rolling with disadvantage.
    */
-  rollWithDisadvantage(diceNotation, roll) {
+  rollWithDisadvantage (parsedDice) {
     const rolls = []
-
-    const parsedDice = this.parser.parseDice(diceNotation)
 
     for (let i = 0; i < parsedDice.numberOfDice; i++) {
       const singleRoll = Math.floor(Math.random() * parsedDice.sides) + 1
@@ -51,10 +44,10 @@ export class Rules {
 
     const lowestRoll = Math.min(...rolls)
     console.log('Rolls with disadvantage:', rolls)
-    console.log('Lowest roll with disadvantage:', lowestRoll)
 
-    roll = lowestRoll
-    return lowestRoll
+    const resultMessage = `You rolled a ${lowestRoll} with disadvantage! (Rolls: ${rolls.join(', ')})`
+
+    return resultMessage
   }
 
   /**
@@ -62,8 +55,9 @@ export class Rules {
    *
    * @returns {string} - Message indicating a natural 20 was rolled.
    */
-  naturalTwenty() {
+  naturalTwenty () {
     const natTwentyMessage = 'You rolled a natural 20! Critical success!'
+    // only return the message, do not add to the roll
     return natTwentyMessage
   }
 
@@ -72,8 +66,9 @@ export class Rules {
    *
    * @returns {string} - Message indicating a natural 1 was rolled.
    */
-  naturalOne() {
+  naturalOne () {
     const natOneMessage = 'You rolled a natural 1! Critical failure!'
+    // only return the message, do not subtract from the roll
     return natOneMessage
   }
 }
