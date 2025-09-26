@@ -1,7 +1,0 @@
-| Namn | Förklaring | Regler och Reflektion |
-| ---- | ---------- | --------------------- |
-| startRolling | Detta är metoden i dice som startar hela tärningsrullningen. Tanken med denna metod var att den ska anropa de andra mindre metoderna. | Jag är inte helt nöjd med namnet. Det kanske är tydligt med att visa "här startar rullning av tärningar", men det avslöjar inte exakt vad metoden gör. Vilket kanske säger något om metoden och dess uppbyggnad. **Use intention-revealing names**. |
-| roll | Namnet på variabeln som håller reda på värdet av den aktuella rullningen. | Förvirrade mig själv med namngivningen av denna till slut. Lite för oklar, hade varit bättre med rollValue kanske. Eller om man ska vara övertydlig med långa variabelnamn (vilket Martin inte verkar ha något emot): valueOfCurrentRoll **Avoid disinformation**. |
-| rolls | Namnet på arrayen som håller reda på rullningar för att urskilja högsta eller lägsta rullningen. | Även här skapas förvirring, särskilt ihop med den tidigare variabeln. Det hade varit bra om jag hade namngivit de båda på ett sätt som förklarade och urskiljde dem mer. **Make meaningful distinctions**. |
-|      |            |                       |
-|      |            |                       |
