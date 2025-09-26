@@ -38,7 +38,6 @@ export class Dice {
       }
 
       if (diceNotation.includes('+') || diceNotation.includes('-')) {
-        console.log('Roll before modifier: ', this.roll)
         this.addModifier(this.roll, parsedDice)
       }
 
@@ -69,8 +68,6 @@ export class Dice {
    */
   rollSingleDie (parsedDice) {
     this.roll = Math.floor(Math.random() * parsedDice.sides) + 1
-
-    console.log('Single die roll:', this.roll)
   }
 
   /**
@@ -82,8 +79,6 @@ export class Dice {
     for (let i = 0; i < parsedDice.numberOfDice; i++) {
       this.roll += Math.floor(Math.random() * parsedDice.sides) + 1
     }
-
-    console.log('Multiple dice roll total:', this.roll)
   }
 
   /**
@@ -95,8 +90,6 @@ export class Dice {
    */
   addModifier (roll, parsedDice) {
     roll += parsedDice.modifier
-
-    console.log('Roll after modifier:', roll)
     return roll
   }
 
