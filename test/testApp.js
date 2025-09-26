@@ -7,7 +7,7 @@
  * @version 1.0.0
  */
 
-import { Dice } from './dice.js'
+import { Dice } from '../src/dice.js'
 
 const diceRoller = new Dice()
 
