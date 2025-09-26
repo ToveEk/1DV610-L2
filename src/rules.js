@@ -21,7 +21,6 @@ export class Rules {
     }
 
     const highestRoll = Math.max(...rolls)
-    console.log('Rolls with advantage:', rolls)
 
     const resultMessage = `You rolled a ${highestRoll} with advantage! (Rolls: ${rolls.join(', ')})`
 
@@ -43,7 +42,6 @@ export class Rules {
     }
 
     const lowestRoll = Math.min(...rolls)
-    console.log('Rolls with disadvantage:', rolls)
 
     const resultMessage = `You rolled a ${lowestRoll} with disadvantage! (Rolls: ${rolls.join(', ')})`
 
