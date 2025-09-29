@@ -26,3 +26,12 @@ Jag tänkte på att bryta ner metoderna så att de blev så små som möjligt. N
 
 Något som Martin skriver om som jag var lite mer skeptisk till var antalet argument som han menar är rimligt att ha. Att noll argument är bäst och ju fler man har desto sämre är det. På ett sätt förstår jag att det blir krångligare kod att läsa om man har fler än tre argument. Men han menar också att två argument ska användas sparsamt, men utifrån det jag är van vid att skriva känns två argument som vanligt förekommande. Oavsett vad jag tycker och tänker kring det så var det ändå något jag reflekterade över när jag skrev modulen. Vid ett tillfälle hade jag tre argument till en metod och började då fundera över om det verkligen var nödvändigt, vilket det visade sig inte vara och koden blev då lite mer lättläst.
 
+## Reflektion kring mina metoder
+
+| Metodnamn | Länk | Antal rader | Reflektion |
+| --------- | ---- | ----------- | ---------- |
+| startRolling | [dice.js](/src/dice.js) | 23 | Min längsta metod. På sätt och vis gör den flera saker då den anropar metoderna som står för parsing, modifiering, specialregler och visning av resultat. Skulle kunna brytas ner till flera mindre metoder, men jag är inte helt säker på hur |
+| applyRules | [dice.js](/src/dice.js) | 19 | Denna metod gör fler än en sak. Den applicerar regler för advantage och disadvantage. Den hanterar också fall som natural 20 och natural 1. Hade behövt delas upp utifrån dess olika ansvarsområden |
+| parseDice | [parser.js](/src/parser.js) | 19 | Denna metod anropar resterande metoder i parser-klassen, sparar de i variabler och skapar ett tärningsobjekt utifrån dem. Hade eventuellt kunnat brytas upp och göra en createDiceObject-metod |
+| rollWithAdvantage | [rules.js](/src/rules.js) | 14 | Denna metod rullar tärningar, sparar varje enskild rullning i en array och tar fram högsta rullningen |
+| rollWithDisadvantage | [rules.js](/src/rules.js) | 14 | Denna metod är väldigt lik rollWithAdvantage. Det som skiljer dem åt är att denna tar fram lägsta rullningen. Det blir upprepning och koden bryter därmed mot DRY. Hade kunnat ha en metod för rullning och sparande i array, och sedan en metod som tog fram antingen högsta eller lägsta värdet beroende på om användaren rullar med advantage eller disadvantage |

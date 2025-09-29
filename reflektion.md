@@ -34,10 +34,11 @@ En del i kapitlet som väckte mer eftertanke var Martins resonemang om antalet a
 
 | Metodnamn | Länk | Antal rader | Reflektion |
 | --------- | ---- | ----------- | ---------- |
-| startRolling | [dice.js](/src/dice.js) | 23 |            |
-| applyRules | [dice.js](/src/dice.js) | 19 |            |
-| parseDice | [parser.js](/src/parser.js) | 19 |            |
-| rollWithAdvantage | [rules.js](/src/rules.js) | 14 |            |
-| rollWithDisadvantage | [rules.js](/src/rules.js) | 14 |            |
+| startRolling | [dice.js](/src/dice.js) | 23 | Min längsta metod. Den ansvarar för att starta tärningsrullningen och anropar metoderna som står för parsing, modifiering, specialregler och visning av resultat. Metoden gör därmed flera saker och skulle kunna brytas ner till flera mindre metoder, men jag är inte helt säker på hur det skulle göras bäst |
+| applyRules | [dice.js](/src/dice.js) | 19 | Denna metod gör fler än en sak. Den applicerar regler för advantage och disadvantage. Den hanterar också fall som natural 20 och natural 1. Metoden hade behövt delas upp i mindre metoder utifrån dess olika ansvarsområden |
+| parseDice | [parser.js](/src/parser.js) | 19 | Denna metod anropar resterande metoder i parser-klassen, sparar resultaten i variabler och skapar ett tärningsobjekt utifrån dem. Den hade eventuellt kunnat brytas upp för att även skapa en createDiceObject-metod |
+| rollWithAdvantage | [rules.js](/src/rules.js) | 14 | Denna metod rullar tärningar, sparar varje enskilt kast i en array och tar fram högsta värdet. Den gör det den ska, men logiken är mycket lik den i rollWithDisadvantage |
+| rollWithDisadvantage | [rules.js](/src/rules.js) | 14 | Denna metod fungerar på samma sätt som rollWithAdvantage. Det som skiljer dem åt är att denna tar fram det lägsta värdet. Detta leder till upprepning och koden bryter därmed mot DRY. En bättre lösning hade kunnat vara att ha en gemensam metod för själva tärningsrullningen och sedan en separat metod för att avgöra om högsta eller lägsta värdet ska användas beroende på vilken regel som valts |
 
 ## Reflektion kring min egen kodkvalité
+
