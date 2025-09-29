@@ -24,7 +24,11 @@ När jag namngav variabler, metoder och klasser försökte jag medvetet följa f
 
 ## Reflektion kring kapitel 3 i Clean Code
 
+Under arbetet med modulen försökte jag medvetet bryta ner metoderna så mycket som möjligt, så att varje metod skulle ha ett tydligt och avgränsat ansvar. I vissa fall kändes det nästan överdrivet, men det blev en värdefull övning i att tänka på ett nytt sätt. Det fick mig att verkligen reflektera över principen att en metod endast ska göra en sak. Dock märkte jag att vissa av mina metoder fortfarande gör flera saker (t.ex. applyRules), men jag är medveten om det och ser hur de eventuellt hade kunnat brytas ner ytterligare.
 
+Jag reflekterade också mycket över storleken på mina if-else-satser. När en sats började bli för omfattande såg jag det som en varningssignal. Det blev ett sätt att identifiera när det var dags att skapa en ny metod istället för att lägga till fler villkor. Den tankegången hjälpte mig att hålla koden mer strukturerad och lättare att följa.
+
+En del i kapitlet som väckte mer eftertanke var Martins resonemang om antalet argument i metoder. Han menar att det bästa är om en metod inte har några argument alls, och att fler än två bör användas sparsamt. Jag förstår tanken att många argument kan göra metoden svårare att läsa och förstå, men samtidigt upplever jag att två argument ofta känns naturligt i praktiken. Även om jag inte är helt säker på om jag håller med Martin, fick han mig att börja tänka mer kritiskt kring mina egna metoder. Vid ett tillfälle hade jag tre argument, vilket fick mig att stanna upp för att fundera över om alla verkligen behövdes. Det visade sig att jag faktiskt bara behövde ett, och när jag tog bort två av dem märkte jag direkt att koden både blev enklare och mer lättläst.
 
 ## Reflektion kring mina metoder
 
