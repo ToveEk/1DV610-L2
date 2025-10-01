@@ -9,6 +9,7 @@
 
 import { Parser } from './parser.js'
 import { Rules } from './rules.js'
+import { History } from './history.js'
 
 /**
  *
@@ -17,6 +18,7 @@ export class Dice {
   diceArray = [4, 6, 8, 10, 12, 20, 100]
   roll = 0
   parser = new Parser()
+  history = new History()
 
   /**
    * Rolls dice based on the provided dice notation string and returns the result message.
@@ -128,7 +130,17 @@ export class Dice {
    * @returns {string} - The result message.
    */
   showResult (roll, parsedDice) {
+    this.history.addRollToHistory(roll)
     const result = `You rolled a ${roll} with ${parsedDice.numberOfDice} d${parsedDice.sides}`
     return result
+  }
+
+  /**
+   * Shows the history of previous rolls.
+   *
+   * @param {number} numberOfRolls - The number of previous rolls to show.
+   */
+  showHistory (numberOfRolls) {
+    this.history.getPreviousRolls(numberOfRolls)
   }
 }
