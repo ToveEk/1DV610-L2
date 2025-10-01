@@ -21,11 +21,20 @@ export class History {
    * @returns {string} - A string listing the previous rolls.
    */
   getPreviousRolls (numberOfRolls) {
-    this.previousRolls = this.previousRolls.slice(-numberOfRolls)
+    if (this.previousRolls.length === 0) {
+      return 'No roll history available. Make some dice rolls first!'
+    }
 
-    const previousRolls = `The last ${numberOfRolls} rolls were: ${this.previousRolls.join(', ')}`
+    if (this.previousRolls.length < numberOfRolls) {
+      console.log(`Requested ${numberOfRolls} rolls, but only found ${this.previousRolls.length}.`)
+      numberOfRolls = this.previousRolls.length
+    }
 
-    console.log(previousRolls)
-    return previousRolls
+    const previousRolls = this.previousRolls.slice(-numberOfRolls)
+
+    const previousRollsMessage = `The last ${numberOfRolls} rolls were: ${previousRolls.join(', ')}`
+
+    console.log(previousRollsMessage)
+    return previousRollsMessage
   }
 }
