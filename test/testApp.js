@@ -51,3 +51,9 @@ console.log(diceRoller.startRolling('6')) // Invalid notation
 console.log(diceRoller.startRolling()) // Invalid notation
 console.log(diceRoller.startRolling('2d20 with advntage')) // Misspelled advantage
 console.log(diceRoller.startRolling('2d4 with advantage')) // Advantage not allowed with d4
+
+// -----------------
+// Show history
+// -----------------
+console.log('Showing history of previous rolls:')
+diceRoller.showHistory(5) // Show the last 5 rolls
