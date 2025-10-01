@@ -20,6 +20,7 @@ Created for the 1DV610 Software Quality course at Linneaus University.
 - Roll a single or multiple dice (d4, d6, d8, d10, d12, d20, d100)
 - Parse dice notation strings (e.g. 2d6+1)
 - Support for modifiers and custom rules
+- Show history of previous dice rolls
 
 ## Installation
 Clone the repository and install dependencies:
@@ -37,6 +38,9 @@ const diceRoller = new Dice()
 console.log(diceRoller.startRolling('2d6+1')) // Roll two six-sided dice with +1 modifier
 console.log(diceRoller.startRolling('2d20 with advantage')) // Roll two d20 with advantage
 console.log(diceRoller.startRolling('3d8-2')) // Roll three eight-sided dice with -2 modifier
+
+diceRolley.showHistory(100) // Show the last 100 rolls
+diceRoller.showHistory(3) // Show the last 3 rolls
 ```
 
 ## Dependencies, Language and Version
