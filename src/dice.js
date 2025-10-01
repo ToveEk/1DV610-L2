@@ -28,6 +28,12 @@ export class Dice {
    */
   startRolling (diceNotation) {
     try {
+      if (!diceNotation || typeof diceNotation !== 'string') {
+        return 'Error: Dice notation must be a non-empty string. Examples: "d6", "2d8+1"'
+      }
+      if (diceNotation.trim() === '') {
+        return 'Error: Dice notation cannot be empty. Examples: "d6", "2d8+1"'
+      }
       const parsedDice = this.parser.parseDice(diceNotation)
 
       if (this.diceArray.includes(parsedDice.sides) && parsedDice.advantage === false && parsedDice.disadvantage === false) {
@@ -141,6 +147,14 @@ export class Dice {
    * @param {number} numberOfRolls - The number of previous rolls to show.
    */
   showHistory (numberOfRolls) {
-    this.history.getPreviousRolls(numberOfRolls)
+    try {
+      if (typeof numberOfRolls !== 'number' || numberOfRolls <= 0) {
+        console.log('Invalid input. Number of rolls must be a positive number.')
+        return
+      }
+      this.history.getPreviousRolls(numberOfRolls)
+    } catch (error) {
+      console.log('An error occurred while retrieving roll history.')
+    }
   }
 }
