@@ -30,3 +30,9 @@ Vid varje test har resultatet observerats i konsolen och jämförts med förvän
 | startRolling('2d4 with advantage') | Försökte använda advantage på d4 | ⚠️ - Felaktigt tillåtet, advantage borde inte vara giltigt för d4 |
 | startRolling('d20') och slog en natural 20 | Testade om rätt specialmeddelande returneras | ⚠️ - Visade standardresultatet, inget specialmeddelande |
 | startRolling('d20') och slog en natural 1 | Testade om rätt specialmeddelande returneras | ⚠️ - Visade standardresultatet, inget specialmeddelande |
+| showHistory(100) | Testade vad som händer om man anger för stort nummer | ✅ - Rätt felmeddelande visades och alla tidigare tärningskast visas istället |
+| showHistory(3) | Visa de 3 senaste tärningskasten | ✅ - De tre senaste kasten visades |
+| showHistory() | Ingen indata | ✅ - Felmeddelande "Invalid input. Number of rolls must be a positive number." |
+| showHistory(-2) | Ogiltig indata | ✅ - Felmeddelande "Invalid input. Number of rolls must be a positive number." |
+| showHistory('two') | Ogiltig indata | ✅ - Felmeddelande "Invalid input. Number of rolls must be a positive number." |
+| showHistory(3) | Testade utan att ha gjort några tärningskast | ⚠️ - Gav inte förväntat felmeddelande |
