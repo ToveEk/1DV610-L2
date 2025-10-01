@@ -56,4 +56,8 @@ console.log(diceRoller.startRolling('2d4 with advantage')) // Advantage not allo
 // Show history
 // -----------------
 console.log('Showing history of previous rolls:')
-diceRoller.showHistory(5) // Show the last 5 rolls
+diceRoller.showHistory(100) // Show the last 100 rolls
+diceRoller.showHistory(3) // Show the last 3 rolls
+diceRoller.showHistory(0) // Invalid input
+diceRoller.showHistory(-2) // Invalid input
+diceRoller.showHistory('two') // Invalid input
