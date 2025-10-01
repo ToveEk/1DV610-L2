@@ -1,8 +1,8 @@
 /**
- * Entry point for the Dice module
+ * Entry point for testing the Dice module.
  *
- * @file index.js
- * @description Main entry point for the Dice module.
+ * @file testApp.js
+ * @description Entry point for testing the Dice module.
  * @author Tove Ek
  * @version 1.0.0
  */
