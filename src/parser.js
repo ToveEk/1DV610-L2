@@ -40,7 +40,7 @@ export class Parser {
 
       return sides
     } else {
-      throw new Error('Invalid dice notation')
+      throw new Error('Invalid dice notation. Must contain "d" (e.g., "d6", "2d8")')
     }
   }
 
@@ -76,6 +76,7 @@ export class Parser {
 
       return -modifierValue
     }
+
     return 0
   }
 
